@@ -1,0 +1,124 @@
+{
+    "data": [
+        {
+            "year": 2003,
+            "growth": 5.2,
+            "expenses": 150000,
+            "profit": 80000
+        },
+        {
+            "year": 2004,
+            "growth": 6.0,
+            "expenses": 155000,
+            "profit": 85000
+        },
+        {
+            "year": 2005,
+            "growth": 4.8,
+            "expenses": 160000,
+            "profit": 90000
+        },
+        {
+            "year": 2006,
+            "growth": 7.2,
+            "expenses": 165000,
+            "profit": 92000
+        },
+        {
+            "year": 2007,
+            "growth": 6.5,
+            "expenses": 170000,
+            "profit": 95000
+        },
+        {
+            "year": 2008,
+            "growth": 3.0,
+            "expenses": 175000,
+            "profit": 98000
+        },
+        {
+            "year": 2009,
+            "growth": 2.3,
+            "expenses": 180000,
+            "profit": 100000
+        },
+        {
+            "year": 2010,
+            "growth": 4.5,
+            "expenses": 185000,
+            "profit": 105000
+        },
+        {
+            "year": 2011,
+            "growth": 5.8,
+            "expenses": 190000,
+            "profit": 110000
+        },
+        {
+            "year": 2012,
+            "growth": 6.2,
+            "expenses": 195000,
+            "profit": 115000
+        },
+        {
+            "year": 2013,
+            "growth": 7.0,
+            "expenses": 200000,
+            "profit": 120000
+        },
+        {
+            "year": 2014,
+            "growth": 6.5,
+            "expenses": 205000,
+            "profit": 125000
+        },
+        {
+            "year": 2015,
+            "growth": 5.5,
+            "expenses": 210000,
+            "profit": 130000
+        },
+        {
+            "year": 2016,
+            "growth": 4.3,
+            "expenses": 215000,
+            "profit": 135000
+        },
+        {
+            "year": 2017,
+            "growth": 3.8,
+            "expenses": 220000,
+            "profit": 140000
+        },
+        {
+            "year": 2018,
+            "growth": 5.2,
+            "expenses": 225000,
+            "profit": 145000
+        },
+        {
+            "year": 2019,
+            "growth": 6.7,
+            "expenses": 230000,
+            "profit": 150000
+        },
+        {
+            "year": 2020,
+            "growth": 2.5,
+            "expenses": 235000,
+            "profit": 155000
+        },
+        {
+            "year": 2021,
+            "growth": 3.2,
+            "expenses": 240000,
+            "profit": 160000
+        },
+        {
+            "year": 2022,
+            "growth": 4.8,
+            "expenses": 245000,
+            "profit": 165000
+        }
+    ]
+}

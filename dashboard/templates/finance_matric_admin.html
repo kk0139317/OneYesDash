@@ -1,0 +1,501 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>Admin Dashboard</title>
+
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+
+
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet">
+
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+
+    <link rel="stylesheet" type="text/css" href="{% static 'bootstrap/css/bootstrap.min.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'font-awesome/css/font-awesome.min.css' %}" />
+
+    <script type="text/javascript" src="{% static 'js/jquery-1.10.2.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script>
+</head>
+
+<body>
+    <div class="grid-container">
+
+
+        <header class="header">
+            <div class="menu-icon" onclick="openSidebar()">
+                <span class="material-icons-outlined">menu</span>
+            </div>
+            <div class="header-left">
+                <span class="material-icons-outlined">search</span>
+            </div>
+            <div class="header-right">
+                <span class="material-icons-outlined">notifications</span>
+                <span class="material-icons-outlined">email</span>
+                <span class="material-icons-outlined">account_circle</span>
+            </div>
+        </header>
+
+        <aside id="sidebar">
+            <div class="sidebar-title">
+                <div class="sidebar-brand">
+                    <span class="material-icons-outlined">inventory</span> DASHBOARD
+                </div>
+                <span class="material-icons-outlined" onclick="closeSidebar()">close</span>
+            </div>
+
+            <ul class="sidebar-list">
+
+                <li class="sidebar-list-item">
+                    <a href="finance_admin">
+                        <span class="material-icons-outlined">fact_check</span> Financial
+                    </a>
+                </li>
+
+                <li class="sidebar-list-item">
+                    <a href="finance_matrics">
+                        <span class="material-icons-outlined">add_shopping_cart</span> Finance Matrics
+                    </a>
+                </li>
+                <li class="sidebar-list-item">
+                    <a href="chatpage">
+                        <span class="material-icons-outlined">settings</span> Chat
+                    </a>
+                </li>
+                <li class="sidebar-list-item">
+                    <a href="logout">
+                        <span class="material-icons-outlined">settings</span> Logout
+                    </a>
+                </li>
+            </ul>
+        </aside>
+
+        <main class="main-container">
+            <div class="main-title">
+                <p class="font-weight-bold">Financial Metrics Module </p>
+            </div>
+
+            <div class="main-cards">
+
+                <div class="card">
+                    <div class="card-inner">
+                        <p class="text-primary">Total Profit</p>
+                        <span class="material-icons-outlined text-blue">inventory_2</span>
+                    </div>
+                    <span class="text-primary font-weight-bold">{{total}}</span>
+                </div>
+                {% for i in company %}
+                <div class="card">
+                    <div class="card-inner">
+                        <p class="text-primary">Profit-{{i.year}} </p>
+                        <span class="material-icons-outlined text-orange">add_shopping_cart</span>
+                    </div>
+                    <span class="text-primary font-weight-bold">{{i.profit}}</span>
+                </div>
+
+                <div class="card">
+                    <div class="card-inner">
+                        <p class="text-primary">Growth-{{i.year}}</p>
+                        <span class="material-icons-outlined text-green">shopping_cart</span>
+                    </div>
+                    <span class="text-primary font-weight-bold">{{i.growth}}%</span>
+                </div>
+
+                <div class="card">
+                    <div class="card-inner">
+                        <p class="text-primary">Expences-{{i.year}}</p>
+                        <span class="material-icons-outlined text-red">notification_important</span>
+                    </div>
+                    <span class="text-primary font-weight-bold">{{i.expences}}</span>
+                </div>
+                {% endfor %}
+            </div>
+
+            <div class="charts">
+
+                <div class="charts-card">
+                    <p class="chart-title">Financial Forecasting</p>
+                    <!-- <div id="bar-chart"></div> -->
+                    <div id="chart1"></div>
+
+                </div>
+
+                <div class="charts-card">
+                    <p class="chart-title">Growth rate</p>
+                    <div id="area-chart"></div>
+                </div>
+
+            </div>
+        </main>
+
+        {% block body %}{% endblock body %}
+        <script type="text/javascript">
+            jQuery(function ($) {
+                var data1 = {{data_json|safe}};
+                var data2 = {{data_json|safe}};
+                var data3 = {{data_json|safe}};
+                // var data4 = {{data_json|safe}};
+                // console.log(data1)
+                  // var data1 = [12, 30, 4, 2, 12, 3, 4, 17, 22, 34, 54, 67];
+                  // var data2 = [3, 9, 12, 14, 22, 32, 45, 12, 67, 45, 55, 7];
+                  // var data3 = [23, 19, 11, 134, 242, 352, 435, 22, 637, 445, 555, 57];
+                  // var data4 = [13, 19, 112, 114, 212, 332, 435, 132, 67, 45, 55, 7];
+                      
+                  $("#chart1").shieldChart({
+                      exportOptions: {
+                          image: false,
+                          print: false
+                      },
+                      axisY: {
+                          title: {
+                              text: "Break-Down for selected quarter"
+                          }
+                      },
+                      dataSeries: [{
+                          seriesType: "line",
+                          data: data1
+                      }]
+                  });
+          
+                  $("#chart2").shieldChart({
+                      exportOptions: {
+                          image: false,
+                          print: false
+                      },
+                      axisY: {
+                          title: {
+                              text: "Break-Down for selected quarter"
+                          }
+                      },
+                      dataSeries: [{
+                          seriesType: "polarbar",
+                          data: data2
+                      }]
+                  });
+          
+                  $("#chart3").shieldChart({
+                      exportOptions: {
+                          image: false,
+                          print: false
+                      },
+                      axisY: {
+                          title: {
+                              text: "Break-Down for selected quarter"
+                          }
+                      },
+                      dataSeries: [{
+                          seriesType: "area",
+                          data: data3
+                      }]
+                  });
+          
+                  $("#chart4").shieldChart({
+                      exportOptions: {
+                          image: false,
+                          print: false
+                      },
+                      axisY: {
+                          title: {
+                              text: "Break-Down for selected quarter"
+                          }
+                      },
+                      dataSeries: [{
+                          seriesType: "stepline",
+                          data: data4
+                      }]
+                  });
+              });
+          </script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/apexcharts/3.35.3/apexcharts.min.js"></script>
+
+        {% comment %}
+        <script src="{% static 'js/scripts.js' %}"></script> {% endcomment %}
+
+        <script>
+
+            var energy = '{{energy}}'
+            var environment = '{{environment}}'
+            var manufacturing = '{{manufacturing}}'
+            var financial = '{{financial}}'
+            // SIDEBAR TOGGLE
+
+            var sidebarOpen = false;
+            var sidebar = document.getElementById("sidebar");
+
+            function openSidebar() {
+                if (!sidebarOpen) {
+                    sidebar.classList.add("sidebar-responsive");
+                    sidebarOpen = true;
+                }
+            }
+
+            function closeSidebar() {
+                if (sidebarOpen) {
+                    sidebar.classList.remove("sidebar-responsive");
+                    sidebarOpen = false;
+                }
+            }
+
+
+
+            // ---------- CHARTS ----------
+
+            // BAR CHART
+            var barChartOptions = {
+                series: [{
+                    data: [financial, environment, manufacturing, financial, 2]
+                }],
+                chart: {
+                    type: 'bar',
+                    height: 350,
+                    toolbar: {
+                        show: false
+                    },
+                },
+                colors: [
+                    "#246dec",
+                    "#cc3c43",
+                    "#367952",
+                    "#f5b74f",
+                    "#4f35a1"
+                ],
+                plotOptions: {
+                    bar: {
+                        distributed: true,
+                        borderRadius: 4,
+                        horizontal: false,
+                        columnWidth: '40%',
+                    }
+                },
+                dataLabels: {
+                    enabled: false
+                },
+                legend: {
+                    show: false
+                },
+                xaxis: {
+                    categories: ["Energy", "Environment", "Manufacturing", "Financial", "Others"],
+                },
+                yaxis: {
+                    title: {
+                        text: "Count"
+                    }
+                }
+            };
+
+            var barChart = new ApexCharts(document.querySelector("#bar-chart"), barChartOptions);
+            barChart.render();
+
+
+            // AREA CHART
+            var areaChartOptions = {
+                series: [{
+                    name: 'Purchase Orders',
+                    data: ["Energy", "Envoiremen", "Manufacturing", "Financial", "Others"]
+                }, {
+                    name: 'Sales Orders',
+                    data: [11, 32, 45, 32, 34, 52, 41]
+                }],
+                chart: {
+                    height: 350,
+                    type: 'area',
+                    toolbar: {
+                        show: false,
+                    },
+                },
+                colors: ["#4f35a1", "#246dec"],
+                dataLabels: {
+                    enabled: false,
+                },
+                stroke: {
+                    curve: 'smooth'
+                },
+                labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sept", "Oct", "Nov", "Dec"],
+                markers: {
+                    size: 0
+                },
+                yaxis: [
+                    {
+                        title: {
+                            text: 'Purchase Orders',
+                        },
+                    },
+                    {
+                        opposite: true,
+                        title: {
+                            text: 'Sales Orders',
+                        },
+                    },
+                ],
+                tooltip: {
+                    shared: true,
+                    intersect: false,
+                }
+            };
+
+            var areaChart = new ApexCharts(document.querySelector("#area-chart"), areaChartOptions);
+            areaChart.render();
+
+        </script>
+
+
+        {% comment %} Financial matrix Modeule Start here {% endcomment %}
+
+        <link rel="stylesheet" type="text/css"
+            href="http://www.shieldui.com/shared/components/latest/css/light-bootstrap/all.min.css" />
+        <script type="text/javascript"
+            src="http://www.shieldui.com/shared/components/latest/js/shieldui-all.min.js"></script>
+
+
+
+        {% comment %} Marketing Start Here {% endcomment %}
+
+        <script type="text/javascript">
+            jQuery(function ($) {
+                var data1 = [12, 3, 4, 2, 12, 3, 4, 17, 22, 34, 54, 67];
+                var data2 = [3, 9, 12, 14, 22, 32, 45, 12, 67, 45, 55, 7];
+                var data3 = [23, 19, 11, 134, 242, 352, 435, 22, 637, 445, 555, 57];
+                var data4 = [13, 19, 112, 114, 212, 332, 435, 132, 67, 45, 55, 7];
+
+                $("#chart1").shieldChart({
+                    exportOptions: {
+                        image: false,
+                        print: false
+                    },
+                    axisY: {
+                        title: {
+                            text: "Break-Down for selected quarter"
+                        }
+                    },
+                    dataSeries: [{
+                        seriesType: "line",
+                        data: data1
+                    }]
+                });
+
+                $("#chart2").shieldChart({
+                    exportOptions: {
+                        image: false,
+                        print: false
+                    },
+                    axisY: {
+                        title: {
+                            text: "Break-Down for selected quarter"
+                        }
+                    },
+                    dataSeries: [{
+                        seriesType: "polarbar",
+                        data: data2
+                    }]
+                });
+
+                $("#chart3").shieldChart({
+                    exportOptions: {
+                        image: false,
+                        print: false
+                    },
+                    axisY: {
+                        title: {
+                            text: "Break-Down for selected quarter"
+                        }
+                    },
+                    dataSeries: [{
+                        seriesType: "area",
+                        data: data3
+                    }]
+                });
+
+                $("#chart4").shieldChart({
+                    exportOptions: {
+                        image: false,
+                        print: false
+                    },
+                    axisY: {
+                        title: {
+                            text: "Break-Down for selected quarter"
+                        }
+                    },
+                    dataSeries: [{
+                        seriesType: "stepline",
+                        data: data4
+                    }]
+                });
+            });
+        </script>
+
+        <script type="text/javascript">
+            jQuery(function ($) {
+                var data1 = [12, 3, 4, 2, 12, 3, 4, 17, 22, 34, 54, 67];
+                var data2 = [32, 92, 122, 142, 222, 322, 425, 122, 627, 425, 525, 27];
+                var data3 = [23, 19, 11, 134, 242, 352, 435, 22, 637, 445, 555, 57];
+
+                $("#chart1").shieldChart({
+                    exportOptions: {
+                        image: false,
+                        print: false
+                    },
+                    axisY: {
+                        title: {
+                            text: "Sales per Quator"
+                        }
+                    },
+                    dataSeries: [{
+                        seriesType: "bar",
+                        data: data1
+                    }]
+                });
+
+                $("#chart23").shieldChart({
+                    exportOptions: {
+                        image: false,
+                        print: false
+                    },
+                    axisY: {
+                        title: {
+                            text: "Sales per Quator"
+                        }
+                    },
+                    dataSeries: [{
+                        seriesType: "bar",
+                        data: data2
+                    }, {
+                        seriesType: "bar",
+                        data: data3
+                    }]
+                });
+            });
+        </script>
+
+        <script src='https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.1.4/Chart.bundle.min.js'></script>
+        <script>
+            $(document).ready(function () {
+                var ctx = $("#chart-line");
+                var myLineChart = new Chart(ctx, {
+                    type: 'pie',
+                    data: {
+                        labels: ["Instagram", "Website", "Add Sance", "Other"],
+                        datasets: [{
+                            data: [300, 1500, 800, 200],
+                            backgroundColor: ["rgba(255, 0, 0, 0.5)", "rgba(100, 255, 0, 0.5)", "rgba(200, 50, 255, 0.5)", "rgba(0, 100, 255, 0.5)"]
+                        }]
+                    },
+                    options: {
+                        title: {
+                            display: true,
+                            text: 'Weather'
+                        }
+                    }
+                });
+            });
+        </script>
+
+
+</body>
+
+</html>

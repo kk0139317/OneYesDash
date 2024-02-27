@@ -1,0 +1,125 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>HelpDesk</title>
+
+  <!-- Meta -->
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Bootstrap Documentation Template For Software Developers">
+  <meta name="author" content="Xiaoying Riley at 3rd Wave Media">
+  <link rel="shortcut icon" href="favicon.ico">
+
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700&display=swap" rel="stylesheet">
+
+  <!-- FontAwesome JS-->
+  <script defer src="/static/fontawesome/js/all.min.js"></script>
+
+  <!-- Theme CSS -->
+  <link rel="stylesheet" href="/static/css/chat.css">
+
+
+<body>
+
+
+  <section class="msger" style="width: 100%;">
+    <header class="msger-header">
+      <div class="msger-header-title">
+        <i class="fas fa-comment-alt"></i>
+        <ul style="display: flex;">
+          
+          <a href="/chatpage/admin">
+            <li style="margin-left: 20px;">admin</li>
+          </a>
+          
+          <a href="/chatpage/kk4881757@gmail.com">
+            <li style="margin-left: 20px;">kk4881757@gmail.com</li>
+          </a>
+          
+          <a href="/chatpage/3goodarvind@gmail.com">
+            <li style="margin-left: 20px;">3goodarvind@gmail.com</li>
+          </a>
+          
+          <a href="/chatpage/kundan">
+            <li style="margin-left: 20px;">kundan</li>
+          </a>
+          
+        </ul>
+      </div>
+      <div class="msger-header-options">
+        <span><i class="fas fa-cog"></i></span>
+      </div>
+    </header>
+
+    <main class="msger-chat">
+      
+      <div class="msg left-msg">
+        <div class="msg-img" style="background-image: url(https://image.flaticon.com/icons/svg/327/327779.svg)"></div>
+
+        <div class="msg-bubble">
+          <div class="msg-info">
+            <div class="msg-info-name">kk4881757@gmail.com</div>
+            <div class="msg-info-time">3goodarvind@gmail.com</div>
+          </div>
+
+          <div class="msg-text">
+            Hiii <br>
+           <a href="" target="/mmedia/" download="">
+
+             
+            </a>
+          </div>
+        </div>
+      </div>
+      
+      <div class="msg left-msg">
+        <div class="msg-img" style="background-image: url(https://image.flaticon.com/icons/svg/327/327779.svg)"></div>
+
+        <div class="msg-bubble">
+          <div class="msg-info">
+            <div class="msg-info-name">kk4881757@gmail.com</div>
+            <div class="msg-info-time">3goodarvind@gmail.com</div>
+          </div>
+
+          <div class="msg-text">
+            fghj <br>
+           <a href="" target="/mmedia/background.avif" download="background.avif">
+
+             background.avif
+            </a>
+          </div>
+        </div>
+      </div>
+      
+      
+    </main>
+
+    <form class="msger-inputarea" action="kk4881757@gmail.com" method="POST">
+      <input type="hidden" name="csrfmiddlewaretoken" value="Mpz7uyQRfhH9xXRdGxhNtIcf80EGdg3Qp67dB2O3VaMvhbq820nU4Im2SaIhgrOC">
+      <input type="file" name="file" placeholder="Submit your file" class="msger-input">
+      <input type="text" name="chat" class="msger-input" placeholder="Enter your message...">
+      <button type="submit" class="msger-send-btn">Send</button>
+    </form>
+  </section>
+  <br>
+
+
+  <!-- Javascript -->
+  <script src="assets/plugins/popper.min.js"></script>
+  <script src="assets/plugins/bootstrap/js/bootstrap.min.js"></script>
+
+  <!-- Page Specific JS -->
+  <script src="/static/plugins/smoothscroll.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.8/highlight.min.js"></script>
+  <script src="/static/js/highlight-custom.js"></script>
+  <script src="/static/plugins/simplelightbox/simple-lightbox.min.js"></script>
+  <script src="/static/plugins/gumshoe/gumshoe.polyfills.min.js"></script>
+  <script src="/static/js/docs.js"></script>
+
+</body>
+
+</html>

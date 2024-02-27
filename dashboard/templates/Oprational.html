@@ -1,0 +1,211 @@
+{% extends "layout.html" %}
+{% load static %}
+  {% block body %}  
+
+      <main class="main-container">
+        <div class="main-title">
+          <p class="font-weight-bold">Sales and Marketing Module</p>
+        </div>
+
+        <div class="main-cards">
+
+          <div class="card">
+            <div class="card-inner">
+              <p class="text-primary">Total Profit</p>
+              <span class="material-icons-outlined text-blue">inventory_2</span>
+            </div>
+            <span class="text-primary font-weight-bold">{{total}}</span>
+          </div>
+          {% for i in company %}
+          <div class="card">
+            <div class="card-inner">
+              <p class="text-primary">Profit-{{i.year}}</p>
+              <span class="material-icons-outlined text-orange">add_shopping_cart</span>
+            </div>
+            <span class="text-primary font-weight-bold">{{i.profit}}</span>
+          </div>
+
+          <div class="card">
+            <div class="card-inner">
+              <p class="text-primary">Growth-{{i.year}}</p>
+              <span class="material-icons-outlined text-green">shopping_cart</span>
+            </div>
+            <span class="text-primary font-weight-bold">{{i.growth}}</span>
+          </div>
+
+          <div class="card">
+            <div class="card-inner">
+              <p class="text-primary">Expences-{{i.year}}</p>
+              <span class="material-icons-outlined text-red">notification_important</span>
+            </div>
+            <span class="text-primary font-weight-bold">{{i.expences}}</span>
+          </div>
+          {% endfor %}
+        </div>
+        
+        <div class="charts" style="width: 100%;">
+          <div class="charts-card">
+            <p class="chart-title"> performance analysis</p>
+                <div id="chart1" class="panel-body">
+
+          </div>
+
+          
+        </div>
+        <div class="charts-card" style="width: 100% !important;">
+          <p class="chart-title">Bar Charts</p>
+          <div id="bar-chart"></div>
+        </div>
+      </main>
+      
+
+    </div>
+
+   
+ 
+{% comment %} Oprational Matrix Modeule start here  {% endcomment %}
+
+
+<script type="text/javascript">
+  jQuery(function ($) {
+      var data1 = {{growth}};
+      // var data2 = [3, 9, 12, 14, 22, 32, 45, 12, 67, 45, 55, 7];
+      // var data3 = [23, 19, 11, 134, 242, 352, 435, 22, 637, 445, 555, 57];
+      // var data4 = [13, 19, 112, 114, 212, 332, 435, 132, 67, 45, 55, 7];
+          
+      $("#chart1").shieldChart({
+          exportOptions: {
+              image: false,
+              print: false
+          },
+          axisY: {
+              title: {
+                  text: "Break-Down for selected quarter"
+              }
+          },
+          dataSeries: [{
+              seriesType: "line",
+              data: data1
+          }]
+      });
+
+      $("#chart2").shieldChart({
+          exportOptions: {
+              image: false,
+              print: false
+          },
+          axisY: {
+              title: {
+                  text: "Break-Down for selected quarter"
+              }
+          },
+          dataSeries: [{
+              seriesType: "polarbar",
+              data: data2
+          }]
+      });
+
+      $("#chart3").shieldChart({
+          exportOptions: {
+              image: false,
+              print: false
+          },
+          axisY: {
+              title: {
+                  text: "Break-Down for selected quarter"
+              }
+          },
+          dataSeries: [{
+              seriesType: "area",
+              data: data3
+          }]
+      });
+
+      $("#chart4").shieldChart({
+          exportOptions: {
+              image: false,
+              print: false
+          },
+          axisY: {
+              title: {
+                  text: "Break-Down for selected quarter"
+              }
+          },
+          dataSeries: [{
+              seriesType: "stepline",
+              data: data4
+          }]
+      });
+  });
+</script>
+
+<script type="text/javascript">
+jQuery(function ($) {
+    var data1 = {{data_json}};
+    var data2 = {{data_json}};
+    var data3 = {{data_json}};
+        
+    $("#chart1").shieldChart({
+        exportOptions: {
+            image: false,
+            print: false
+        },
+        axisY: {
+            title: {
+                text: "Break-Down for selected quarter"
+            }
+        },
+        dataSeries: [{
+            seriesType: "bar",
+            data: data1
+        }]
+    });
+
+    $("#chart23").shieldChart({
+        exportOptions: {
+            image: false,
+            print: false
+        },
+        axisY: {
+            title: {
+                text: "Break-Down for selected quarter"
+            }
+        },
+        dataSeries: [{
+            seriesType: "bar",
+            data: data2
+        }, {
+            seriesType: "bar",
+            data: data3
+        }]
+    });
+});
+</script>
+
+<script src='https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.1.4/Chart.bundle.min.js'></script>
+<script>
+  $(document).ready(function() {
+      var ctx = $("#chart-line");
+      var myLineChart = new Chart(ctx, {
+          type: 'pie',
+          data: {
+              labels: [],
+              datasets: [{
+                  data: {{data_json}},
+                  backgroundColor: ["rgba(255, 0, 0, 0.5)", "rgba(100, 255, 0, 0.5)", "rgba(200, 50, 255, 0.5)", "rgba(0, 100, 255, 0.5)"]
+              }]
+          },
+          options: {
+              title: {
+                  display: true,
+                  text: 'Weather'
+              }
+          }
+      });
+  });
+</script>
+ 
+
+
+
+{% endblock body %}    

@@ -1,0 +1,91 @@
+{% extends "layout.html" %}
+{% load static %}
+    {% block body %}
+      <main class="main-container">
+        <div class="main-title">
+          <p class="font-weight-bold">Sales and Marketing</p>
+        </div>
+
+        <div class="main-cards">
+
+          <div class="card">
+            <div class="card-inner">
+              <p class="text-primary">Total seles</p>
+              <span class="material-icons-outlined text-blue">inventory_2</span>
+            </div>
+            <span class="text-primary font-weight-bold">5000</span>
+          </div>
+
+          <div class="card">
+            <div class="card-inner">
+              <p class="text-primary">Instagram engagement</p>
+              <span class="material-icons-outlined text-orange">add_shopping_cart</span>
+            </div>
+            <span class="text-primary font-weight-bold">300</span>
+          </div>
+
+          <div class="card">
+            <div class="card-inner">
+              <p class="text-primary">From Website</p>
+              <span class="material-icons-outlined text-green">shopping_cart</span>
+            </div>
+            <span class="text-primary font-weight-bold">1500</span>
+          </div>
+
+          <div class="card">
+            <div class="card-inner">
+              <p class="text-primary">Avg Visitor</p>
+              <span class="material-icons-outlined text-red">notification_important</span>
+            </div>
+            <span class="text-primary font-weight-bold">100</span>
+          </div>
+
+        </div>
+
+        <div class="charts">
+
+          <div class="charts-card">
+            <p class="chart-title">Sales and advatisement</p>
+            <!-- <div id="bar-chart"></div> -->
+            <!-- <div id="chart1"></div> -->
+            <div class="page-content page-container" id="page-content">
+              <div class="padding">
+                  <div class="row">
+                      <div class="container-fluid d-flex justify-content-center">
+                          <div class="col-sm-8 col-md-12">
+                              <div class="card">
+                                  <!-- <div class="card-header">Pie chart</div> -->
+                                  <div class="card-body">
+                                      <div class="chartjs-size-monitor" style="position: absolute; left: 0px; top: 0px; right: 0px; bottom: 0px; overflow: hidden; pointer-events: none; visibility: hidden; z-index: -1;">
+                                          <div class="chartjs-size-monitor-expand" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;">
+                                              <div style="position:absolute;width:1000000px;height:1000000px;left:0;top:0"></div>
+                                          </div>
+                                          <div class="chartjs-size-monitor-shrink" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;">
+                                              <div style="position:absolute;width:200%;height:200%;left:0; top:0"></div>
+                                          </div>
+                                      </div> <canvas id="chart-line" width="299" height="200" class="chartjs-render-monitor" style="display: block; width: 299px; height: 200px;"></canvas>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+
+          </div>
+
+          <div class="charts-card">
+            <p class="chart-title">Total Sales</p>
+                <div id="chart23" class="panel-body">
+
+          </div>
+
+        </div>
+      </main>
+      
+
+    </div>
+
+   
+
+{% endblock body %}      

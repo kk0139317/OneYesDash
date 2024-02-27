@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<!-- Coding By CodingNepal - codingnepalweb.com -->
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>login here</title>
+  <link rel="stylesheet" href="static/css/upto_login.css" />
+  <style>
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      background-color: #f9f9f9;
+      min-width: 160px;
+      box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+      z-index: 1;
+    }
+
+    .dropdown-content a {
+      color: black;
+      padding: 12px 16px;
+      text-decoration: none;
+      display: block;
+    }
+
+    .dropdown-content a:hover {
+      background-color: #f1f1f1;
+    }
+
+    .show {
+      display: block;
+    }
+
+    .dropbtn.selected {
+      background-color: #f0f0f0;
+      /* Selected button background color */
+    }
+  </style>
+</head>
+
+<body>
+  <div class="wrapper">
+    <h2>Login here</h2>
+    {% if messages %}
+									{% for message in messages %}
+										{% if message.tags == 'success' %}
+											<p class="success-message">{{ message }}</p>
+										{% endif %}
+									{% endfor %}
+								{% endif %}
+
+								<!-- Check for error messages -->
+								{% if messages %}
+									{% for message in messages %}
+										{% if message.tags == 'error' %}
+											<p class="error-message">{{ message }}</p>
+										{% endif %}
+									{% endfor %}
+								{% endif %} 
+    <div class="dropdown">
+      <form action="{% url 'loginuser' %}" method="POST">
+        {% csrf_token %}
+        <div class="wrapper">
+            <div class="dropdown">
+                <select class="form-select form-select-lg mb-3 dropbtn" name="user_types" aria-label="Large select example">
+                    <option value="ceo">CEO</option>
+                    <option value="operational">Operational</option>
+                    <option value="financial">Financial</option>  
+                    <option value="sales_marketing">Sales & Marketing</option>
+                </select>
+            </div>
+            <div class="input-box">
+                <input type="email" placeholder="Enter your email" name="email" required />
+            </div>
+            <div class="input-box">
+                <input type="password" placeholder="Enter password" name="password" required />
+            </div>
+            <div class="input-box button">
+                <input type="submit" value="Login Now" />
+            </div>
+            <div class="text">
+                <h3>Don't have an account? <a href="{% url 'CreateUser' %}">Register now</a></h3>
+            </div>
+        </div>
+    </form>
+  </div>
+
+  <script>
+    function toggleDropdown() {
+      document.getElementById("myDropdown").classList.toggle("show");
+    }
+
+    // Function to handle selecting a link
+    function selectLink(link) {
+      var dropdownLinks = document.querySelectorAll('.dropdown-content a');
+      dropdownLinks.forEach(function (dropdownLink) {
+        dropdownLink.classList.remove('selected');
+      });
+      link.classList.add('selected');
+
+      // Update the main button's text with the selected link
+      document.getElementById("mainButton").innerText = link.innerText;
+
+      // Close the dropdown menu
+      toggleDropdown();
+    }
+
+    // Close the dropdown menu if the user clicks outside of it
+    window.onclick = function (event) {
+      if (!event.target.matches('.dropbtn')) {
+        var dropdowns = document.getElementsByClassName("dropdown-content");
+        var i;
+        for (i = 0; i < dropdowns.length; i++) {
+          var openDropdown = dropdowns[i];
+          if (openDropdown.classList.contains('show')) {
+            openDropdown.classList.remove('show');
+          }
+        }
+      }
+    }
+  </script>
+</body>
+
+</html>

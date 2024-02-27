@@ -1,0 +1,94 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>HelpDesk</title>
+
+  <!-- Meta -->
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Bootstrap Documentation Template For Software Developers">
+  <meta name="author" content="Xiaoying Riley at 3rd Wave Media">
+  <link rel="shortcut icon" href="favicon.ico">
+
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700&display=swap" rel="stylesheet">
+
+  <!-- FontAwesome JS-->
+  <script defer src="{% static 'fontawesome/js/all.min.js' %}"></script>
+
+  <!-- Theme CSS -->
+  <link rel="stylesheet" href="{% static 'css/chat.css' %}">
+
+
+<body>
+
+
+  <section class="msger" style="width: 100%;">
+    <header class="msger-header">
+      <div class="msger-header-title">
+        <i class="fas fa-comment-alt"></i>
+        <ul style="display: flex;">
+          {% for i in users %}
+          <a href="/chatpage/{{i.username}}">
+            <li style="margin-left: 20px;">{{i.username}}</li>
+          </a>
+          {% endfor %}
+        </ul>
+      </div>
+      <div class="msger-header-options">
+        <span><i class="fas fa-cog"></i></span>
+      </div>
+    </header>
+
+    <main class="msger-chat">
+      {% for val in chatval %}
+      <div class="msg left-msg">
+        <div class="msg-img" style="background-image: url(https://image.flaticon.com/icons/svg/327/327779.svg)"></div>
+
+        <div class="msg-bubble">
+          <div class="msg-info">
+            <div class="msg-info-name">{{val.sender}}</div>
+            <div class="msg-info-time">{{val.recever}}</div>
+          </div>
+
+          <div class="msg-text">
+            {{val.chat}} <br>
+           <a href="" target="/mmedia/{{val.file}}" download="{{val.file}}">
+
+             {{val.file}}
+            </a>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+      
+    </main>
+
+    <form class="msger-inputarea" action="{{recever}}" method="POST">
+      {% csrf_token %}
+      <input type="file" name="file" placeholder="Submit your file" class="msger-input">
+      <input type="text" name="chat" class="msger-input" placeholder="Enter your message...">
+      <button type="submit" class="msger-send-btn">Send</button>
+    </form>
+  </section>
+  <br>
+
+
+  <!-- Javascript -->
+  <script src="assets/plugins/popper.min.js"></script>
+  <script src="assets/plugins/bootstrap/js/bootstrap.min.js"></script>
+
+  <!-- Page Specific JS -->
+  <script src="{% static 'plugins/smoothscroll.min.js' %}"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.8/highlight.min.js"></script>
+  <script src="{% static 'js/highlight-custom.js' %}"></script>
+  <script src="{% static 'plugins/simplelightbox/simple-lightbox.min.js' %}"></script>
+  <script src="{% static 'plugins/gumshoe/gumshoe.polyfills.min.js' %}"></script>
+  <script src="{% static 'js/docs.js' %}"></script>
+
+</body>
+
+</html>
